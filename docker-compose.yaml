@@ -1,0 +1,23 @@
+version: '3.9'
+
+name: 'nestjs-clean-arch'
+services:
+  db:
+    image: postgres:13.2
+    container_name: nestjs-postgres
+    restart: unless-stopped
+    networks:
+      - postgres
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER:-postgres}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-postgres}
+      PGDATA: /data/postgres
+    volumes:
+      - './init:/docker-entrypoint-initdb.d'
+    ports:
+      - '5432:5432'
+volumes:
+  postgres:
+networks:
+  postgres:
+    driver: bridge
