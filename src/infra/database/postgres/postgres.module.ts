@@ -1,4 +1,5 @@
 import { Module, Provider } from '@nestjs/common';
+import OrderRepositoryDatabase from 'src/infra/repository/database/OrderRepositoryDatabase';
 import ItemRepositoryDatabase from '../../../infra/repository/database/ItemRepositoryDatabase';
 import Connection from '../Connection';
 import PgPromiseConnectionAdapter from '../PgPromiseConnectionAdapter';
@@ -16,9 +17,18 @@ const itemRepositoryDatabaseProvider: Provider = {
   inject: [PgPromiseConnectionAdapter],
 };
 
+const orderRepositoryDatabaseProvider: Provider = {
+  provide: OrderRepositoryDatabase,
+  useFactory: (connection: Connection) => {
+    return new OrderRepositoryDatabase(connection);
+  },
+  inject: [PgPromiseConnectionAdapter],
+};
+
 export const databaseProviders = [
   postgresAdapter,
   itemRepositoryDatabaseProvider,
+  orderRepositoryDatabaseProvider,
 ];
 
 @Module({

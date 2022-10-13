@@ -1,2 +1,13 @@
+#########
+# Items #
+#########
 GET http://localhost:3000/items HTTP/1.1
+
+##########
+# Orders #
+##########
+
+GET http://localhost:3000/orders
 ###
+
+GET http://localhost:3000/orders/202200000001
