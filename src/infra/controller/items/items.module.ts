@@ -1,11 +1,11 @@
 import { Module, Provider } from '@nestjs/common';
-import GetItems from 'src/application/GetItems';
+import GetItems from '../../../application/GetItems';
+import ItemRepository from '../../../domain/repository/ItemRepository';
 import {
   databaseProviders,
   PostgresModule,
-} from 'src/infra/database/postgres/postgres.module';
-import ItemRepositoryDatabase from 'src/infra/repository/database/ItemRepositoryDatabase';
-import ItemRepository from '../../../domain/repository/ItemRepository';
+} from '../../../infra/database/postgres/postgres.module';
+import ItemRepositoryDatabase from '../../../infra/repository/database/ItemRepositoryDatabase';
 import { ItemsController } from './items.controller';
 
 const getItemsProvider: Provider = {
@@ -16,9 +16,11 @@ const getItemsProvider: Provider = {
   inject: [ItemRepositoryDatabase],
 };
 
+export const getItemsProviders = [getItemsProvider];
+
 @Module({
   imports: [PostgresModule],
   controllers: [ItemsController],
-  providers: [getItemsProvider, ...databaseProviders],
+  providers: [...getItemsProviders, ...databaseProviders],
 })
 export class ItemsModule {}

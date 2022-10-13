@@ -1,5 +1,5 @@
 import { Controller, Get } from '@nestjs/common';
-import GetItems from 'src/application/GetItems';
+import GetItems from '../../../application/GetItems';
 
 @Controller('items')
 export class ItemsController {

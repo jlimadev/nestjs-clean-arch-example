@@ -1,5 +1,5 @@
 import { Module, Provider } from '@nestjs/common';
-import ItemRepositoryDatabase from 'src/infra/repository/database/ItemRepositoryDatabase';
+import ItemRepositoryDatabase from '../../../infra/repository/database/ItemRepositoryDatabase';
 import Connection from '../Connection';
 import PgPromiseConnectionAdapter from '../PgPromiseConnectionAdapter';
 
