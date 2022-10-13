@@ -1,6 +1,6 @@
 import { Controller, Get, Param } from '@nestjs/common';
-import GetOrder from 'src/application/GetOrder';
-import GetOrders from 'src/application/GetOrders';
+import GetOrder from '../../../application/GetOrder';
+import GetOrders from '../../../application/GetOrders';
 
 @Controller('orders')
 export class OrdersController {

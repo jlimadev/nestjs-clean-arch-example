@@ -1,12 +1,12 @@
 import { Module, Provider } from '@nestjs/common';
-import GetOrder from 'src/application/GetOrder';
-import GetOrders from 'src/application/GetOrders';
-import OrderRepository from 'src/domain/repository/OrderRepository';
-import OrderRepositoryDatabase from 'src/infra/repository/database/OrderRepositoryDatabase';
+import GetOrder from '../../../application/GetOrder';
+import GetOrders from '../../../application/GetOrders';
+import OrderRepository from '../../../domain/repository/OrderRepository';
 import {
   databaseProviders,
   PostgresModule,
 } from '../../../infra/database/postgres/postgres.module';
+import OrderRepositoryDatabase from '../../../infra/repository/database/OrderRepositoryDatabase';
 import { OrdersController } from './orders.controller';
 
 const getOrderProvider: Provider = {

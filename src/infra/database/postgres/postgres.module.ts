@@ -1,6 +1,6 @@
 import { Module, Provider } from '@nestjs/common';
-import OrderRepositoryDatabase from 'src/infra/repository/database/OrderRepositoryDatabase';
 import ItemRepositoryDatabase from '../../../infra/repository/database/ItemRepositoryDatabase';
+import OrderRepositoryDatabase from '../../../infra/repository/database/OrderRepositoryDatabase';
 import Connection from '../Connection';
 import PgPromiseConnectionAdapter from '../PgPromiseConnectionAdapter';
 
