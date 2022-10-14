@@ -2,17 +2,23 @@ import pgp from 'pg-promise';
 import Connection from './Connection';
 
 export default class PgPromiseConnectionAdapter implements Connection {
-  client: any;
+  private static client: any;
 
   constructor() {
-    this.client = pgp()('postgres://postgres:postgres@localhost:5432/postgres');
+    PgPromiseConnectionAdapter.client = pgp()(
+      'postgres://postgres:postgres@localhost:5432/postgres',
+    );
   }
 
   query(statement: string, params: any): Promise<unknown> {
-    return this.client.query(statement, params);
+    return PgPromiseConnectionAdapter.client.query(statement, params);
   }
 
   close(): Promise<void> {
-    return this.client.$pool.end();
+    return PgPromiseConnectionAdapter.client.$pool.end();
+  }
+
+  static close(): Promise<void> {
+    return PgPromiseConnectionAdapter.client.$pool.end();
   }
 }
