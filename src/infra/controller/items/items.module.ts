@@ -1,10 +1,7 @@
 import { Module, Provider } from '@nestjs/common';
 import GetItems from '../../../application/GetItems';
 import ItemRepository from '../../../domain/repository/ItemRepository';
-import {
-  databaseProviders,
-  PostgresModule,
-} from '../../../infra/database/postgres/postgres.module';
+import { PostgresModule } from '../../../infra/database/postgres/postgres.module';
 import ItemRepositoryDatabase from '../../../infra/repository/database/ItemRepositoryDatabase';
 import { ItemsController } from './items.controller';
 
@@ -21,6 +18,7 @@ export const getItemsProviders = [getItemsProvider];
 @Module({
   imports: [PostgresModule],
   controllers: [ItemsController],
-  providers: [...getItemsProviders, ...databaseProviders],
+  providers: getItemsProviders,
+  exports: getItemsProviders,
 })
 export class ItemsModule {}
